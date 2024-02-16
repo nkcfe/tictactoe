@@ -5,6 +5,7 @@ import CarouselItem from "../components/CarouselItem";
 import BoardSize from "../components/setting/BoardSize";
 import Player from "../components/setting/Player";
 import Sequence from "../components/setting/Sequence";
+import VicCondition from "../components/setting/VicCondition";
 
 const Setting = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -22,6 +23,12 @@ const Setting = () => {
       <Carousel>
         <CarouselItem activeIndex={activeIndex}>
           <BoardSize handleNextIndex={handleNextIndex} />
+        </CarouselItem>
+        <CarouselItem activeIndex={activeIndex}>
+          <VicCondition
+            handleNextIndex={handleNextIndex}
+            handlePrevIndex={handlePrevIndex}
+          />
         </CarouselItem>
         <CarouselItem activeIndex={activeIndex}>
           <Player

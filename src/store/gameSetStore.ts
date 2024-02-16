@@ -8,6 +8,9 @@ interface GameSetStore {
   setFirstPlayer: (firstPlayer: playerType) => void;
   setSecondPlayer: (secondPlayer: playerType) => void;
 
+  victory: number;
+  setVictory: (victory: number) => void;
+
   boardSize: number;
 
   setBoardSize: (boardSize: number) => void;
@@ -23,8 +26,18 @@ interface GameSetStore {
 }
 
 const useGameSetStore = create<GameSetStore>((set) => {
-  const initialPlayer1 = { name: "player1", color: "#6895D2", iconIndex: 0 };
-  const initialPlayer2 = { name: "player2", color: "#D04848", iconIndex: 1 };
+  const initialPlayer1 = {
+    name: "player1",
+    color: "#6895D2",
+    iconIndex: 0,
+    leftCount: 3,
+  };
+  const initialPlayer2 = {
+    name: "player2",
+    color: "#D04848",
+    iconIndex: 1,
+    leftCount: 3,
+  };
 
   return {
     player1: initialPlayer1,
@@ -32,11 +45,13 @@ const useGameSetStore = create<GameSetStore>((set) => {
     firstPlayer: initialPlayer1,
     secondPlayer: initialPlayer2,
     boardSize: 3,
+    victory: 3,
 
     setFirstPlayer: (firstPlayer) => set({ firstPlayer }),
     setSecondPlayer: (secondPlayer) => set({ secondPlayer }),
 
     setBoardSize: (boardSize) => set({ boardSize }),
+    setVictory: (victory) => set({ victory }),
 
     setColorPlayer1: (color: string) =>
       set((state) => {
